@@ -200,6 +200,11 @@ public class NetworkImageView extends ImageView {
 
     @Override
     protected void onDetachedFromWindow() {
+        resetImageView();
+        super.onDetachedFromWindow();
+    }
+
+    public void resetImageView() {
         if (mImageContainer != null) {
             // If the view was bound to an image request, cancel it and clear
             // out the image from the view.
@@ -208,7 +213,6 @@ public class NetworkImageView extends ImageView {
             // also clear out the container so we can reload the image if necessary.
             mImageContainer = null;
         }
-        super.onDetachedFromWindow();
     }
 
     @Override
