@@ -75,7 +75,7 @@ public class ImageLoader {
     public interface ImageCache {
         public Bitmap getBitmap(String url);
         public void putBitmap(String url, Bitmap bitmap);
-        public void evictMemoryCache();
+        public void evictMemoryCache(String url, int maxWidth, int maxHeight);
     }
 
     /**
@@ -474,7 +474,7 @@ public class ImageLoader {
      * @param maxWidth The max-width of the output.
      * @param maxHeight The max-height of the output.
      */
-    private static String getCacheKey(String url, int maxWidth, int maxHeight) {
+    public static String getCacheKey(String url, int maxWidth, int maxHeight) {
         return new StringBuilder(url.length() + 12).append("#W").append(maxWidth)
                 .append("#H").append(maxHeight).append(url).toString();
     }
